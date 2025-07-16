@@ -7,8 +7,10 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { ProductModule } from './product/product.module';
-import { WebsocketModule } from './websocket/websocket.module';
 import { ApiModule } from './api/api.module';
+import { ChatModule } from './websocket/chat/chat.module';
+import { JwtModule } from '@nestjs/jwt';
+import { ChatGateway } from './websocket/chat/chat.gateway';
 
 @Module({
   imports: [
@@ -24,8 +26,13 @@ import { ApiModule } from './api/api.module';
     AuthModule,
     UsersModule,
     ProductModule,
-    WebsocketModule,
     ApiModule,
+    ChatModule,
+    JwtModule.register({
+      global:true,
+      secret:process.env.JWT_SECRET,
+      signOptions:{expiresIn:'24h'}
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
