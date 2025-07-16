@@ -294,7 +294,7 @@
                     <div class="content">
                         <span class="username" style="color: ${stringToColor(msg.username)}">${msg.username}</span>
                         <span class="text">${msg.text}</span>
-                        <span class="timestamp">${new Date(msg.createAt).toLocaleTimeString('vi-VN')}</span>
+                        <span class="timestamp">${new Date(msg.createdAt).toLocaleTimeString('vi-VN')}</span>
                     </div>
                 `;
       container.appendChild(div);
@@ -311,7 +311,7 @@
                 <div class="content">
                     <span class="username" style="color: ${stringToColor(msg.username)}">${msg.username}</span>
                     <span class="text">${msg.text}</span>
-                    <span class="timestamp">${new Date(msg.createAt).toLocaleTimeString('vi-VN')}</span>
+                    <span class="timestamp">${new Date(msg.createdAt).toLocaleTimeString('vi-VN')}</span>
                 </div>
             `;
     container.appendChild(div);
