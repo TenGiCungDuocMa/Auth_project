@@ -4,6 +4,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { RedisIoAdapter } from './websocket/adapters/redis-io.adapter';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import * as process from 'process';
+import { join } from 'path';
 // import { randomBytes } from 'crypto';
 // import * as fs from 'fs';
 
@@ -11,11 +14,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.use(new LoggerMiddleware().use);
-
-
-    // const secret = randomBytes(32).toString('hex');
-    // fs.appendFileSync('.env', `\nJWT_SECRET=${secret}\n`);
-    // console.log('Secret written to .env!');
 
   const config = new DocumentBuilder()
     .setTitle('Authentication')
@@ -40,6 +38,7 @@ async function bootstrap() {
     origin: 'http://localhost:63342'??'http://192.168.1.190:63342',
     credentials: true,
   });
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

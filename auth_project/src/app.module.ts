@@ -11,6 +11,7 @@ import { ApiModule } from './api/api.module';
 import { ChatModule } from './websocket/chat/chat.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ChatGateway } from './websocket/chat/chat.gateway';
+import { InteractContractModule } from './interact-contract/interact-contract.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ChatGateway } from './websocket/chat/chat.gateway';
       secret:process.env.JWT_SECRET,
       signOptions:{expiresIn:'24h'}
     }),
+    InteractContractModule,
   ],
   controllers: [AppController],
   providers: [AppService],
